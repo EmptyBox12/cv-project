@@ -13,6 +13,8 @@ import { ExperienceDisplay } from "./components/display/ExperienceDisplay";
 class App extends React.Component {
   constructor() {
     super();
+    this.renderDisplay = this.renderDisplay.bind(this);
+    this.renderEdit = this.renderEdit.bind(this);
     this.state = {
       personal: {
         name: "",
@@ -39,28 +41,44 @@ class App extends React.Component {
       editMode: true,
     };
   }
-  render() {
-    function renderEdit() {
-      return (
-        <div>
-        <PersonalEdit />
+  handlePersonalChange = (e) =>{
+    this.setState({
+      personal: {
+        ...this.state.personal,
+        [e.target.name] : e.target.value,
+      }
+    });
+  };
+  switchMode = () =>{
+    this.setState({
+      ...this.state,
+      editMode : this.state.editMode ? false : true,
+    })
+  }
+  renderEdit() {
+    return (
+      <div>
+        <PersonalEdit personalInfo={this.state.personal} handlePersonalChange = {this.handlePersonalChange}/>
         <ExperienceEdit />
         <EducationEdit />
-        </div>
-      );
-    }
-    function renderDisplay() {
-      return (
-        <div>
-        <PersonalDisplay />
+      </div>
+    );
+  }
+  renderDisplay() {
+    return (
+      <div>
+        <PersonalDisplay personalInfo={this.state.personal} />
         <ExperienceDisplay />
         <EducationDisplay />
-        </div>
-      );
-    }
+      </div>
+    );
+  }
+  render() {
     return (
       <div className="App">
-        {this.state.editMode ? renderEdit() : renderDisplay()}
+        <h1 className="title">CV Creator</h1>
+        {this.state.editMode ? this.renderEdit() : this.renderDisplay()}
+        <button onClick = {this.switchMode}>Switch Mode</button>
       </div>
     );
   }

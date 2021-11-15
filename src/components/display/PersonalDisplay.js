@@ -1,14 +1,19 @@
 /* eslint-disable no-useless-constructor */
-import React from 'react';
+import React from "react";
 
-
-export class PersonalDisplay extends React.Component{
-  constructor(props){
+export class PersonalDisplay extends React.Component {
+  constructor(props) {
     super(props);
   }
-  render(){
+  render() {
     return (
-      <div>Personal Display</div>
+      <div>
+        <p>{this.props.personalInfo.name}</p>
+        <div>
+          <p>{this.props.personalInfo.email}</p>
+          <p>{this.props.personalInfo.phoneNumber}</p>
+        </div>
+      </div>
     );
   }
 }
