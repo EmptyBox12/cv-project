@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-useless-constructor */
+import React from "react";
+import "./styles/App.css";
+//edit mode
+import { PersonalEdit } from "./components/edit/PersonalEdit";
+import { EducationEdit } from "./components/edit/EducationEdit";
+import { ExperienceEdit } from "./components/edit/ExperienceEdit";
+//display mode
+import { PersonalDisplay } from "./components/display/PersonalDisplay";
+import { EducationDisplay } from "./components/display/EducationDisplay";
+import { ExperienceDisplay } from "./components/display/ExperienceDisplay";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      personal: {
+        name: "",
+        email: "",
+        phoneNumber: "",
+      },
+      education: [
+        {
+          schoolName: "",
+          major: "",
+          startDate: "",
+          endDate: "",
+        },
+      ],
+      experience: [
+        {
+          companyName: "",
+          position: "",
+          description: "",
+          startDate: "",
+          endDate: "",
+        },
+      ],
+      editMode: true,
+    };
+  }
+  render() {
+    function renderEdit() {
+      return (
+        <div>
+        <PersonalEdit />
+        <ExperienceEdit />
+        <EducationEdit />
+        </div>
+      );
+    }
+    function renderDisplay() {
+      return (
+        <div>
+        <PersonalDisplay />
+        <ExperienceDisplay />
+        <EducationDisplay />
+        </div>
+      );
+    }
+    return (
+      <div className="App">
+        {this.state.editMode ? renderEdit() : renderDisplay()}
+      </div>
+    );
+  }
 }
 
 export default App;
