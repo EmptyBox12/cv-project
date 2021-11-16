@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+import uniqid from "uniqid";
 import "./styles/App.css";
 //edit mode
 import { PersonalEdit } from "./components/edit/PersonalEdit";
@@ -27,6 +28,7 @@ class App extends React.Component {
           major: "",
           startDate: "",
           endDate: "",
+          id: uniqid(),
         },
       ],
       experience: [
@@ -36,30 +38,71 @@ class App extends React.Component {
           description: "",
           startDate: "",
           endDate: "",
+          id: uniqid(),
         },
       ],
       editMode: true,
     };
   }
-  handlePersonalChange = (e) =>{
+  handlePersonalChange = (e) => {
     this.setState({
       personal: {
         ...this.state.personal,
-        [e.target.name] : e.target.value,
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
-  switchMode = () =>{
+  handleExperienceChange = (e) => {
+    let index = e.target.getAttribute("data-id");
+    let experience = [...this.state.experience];
+    experience[index] = {
+      ...this.state.experience[index],
+      [e.target.name]: e.target.value,
+    };
+    this.setState({ experience });
+  };
+  clickAddExperience = (e) => {
+    let object = {
+      companyName: "",
+      position: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+      id: uniqid(),
+    };
     this.setState({
-      ...this.state,
-      editMode : this.state.editMode ? false : true,
-    })
-  }
+      experience: this.state.experience.concat(object),
+    });
+  };
+  clickDeleteExperience = (e) => {
+    let deleteIndex = e.target.getAttribute("data-id");
+    let experience = this.state.experience.filter((item, index) => {
+      if (index !== parseInt(deleteIndex)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.setState({ experience });
+  };
+  switchMode = () => {
+    this.setState({
+      editMode: this.state.editMode ? false : true,
+    });
+  };
   renderEdit() {
     return (
       <div>
-        <PersonalEdit personalInfo={this.state.personal} handlePersonalChange = {this.handlePersonalChange}/>
-        <ExperienceEdit />
+        <PersonalEdit
+          personalInfo={this.state.personal}
+          handlePersonalChange={this.handlePersonalChange}
+        />
+        <ExperienceEdit
+          experienceArray={this.state.experience}
+          handleExperienceChange={this.handleExperienceChange}
+          clickAddExperience={this.clickAddExperience}
+          clickDeleteExperience={this.clickDeleteExperience}
+        />
         <EducationEdit />
       </div>
     );
@@ -68,7 +111,7 @@ class App extends React.Component {
     return (
       <div>
         <PersonalDisplay personalInfo={this.state.personal} />
-        <ExperienceDisplay />
+        <ExperienceDisplay experienceArray = {this.state.experience}/>
         <EducationDisplay />
       </div>
     );
@@ -78,7 +121,7 @@ class App extends React.Component {
       <div className="App">
         <h1 className="title">CV Creator</h1>
         {this.state.editMode ? this.renderEdit() : this.renderDisplay()}
-        <button onClick = {this.switchMode}>Switch Mode</button>
+        <button onClick={this.switchMode}>Switch Mode</button>
       </div>
     );
   }
