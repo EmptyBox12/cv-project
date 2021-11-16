@@ -8,6 +8,7 @@ export class EducationEdit extends React.Component {
   render() {
     return (
       <div>
+        <p className="sectionTitle">Education</p>
         <button onClick={this.props.clickAddEducation}>Add Education</button>
         {this.props.educationArray.map((education, index) => {
           return (

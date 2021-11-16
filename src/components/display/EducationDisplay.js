@@ -8,6 +8,7 @@ export class EducationDisplay extends React.Component {
   render() {
     return (
       <div>
+        <p className="sectionTitle">Education</p>
         {this.props.educationArray.map((education) => {
           return (
             <div key={education.id}>

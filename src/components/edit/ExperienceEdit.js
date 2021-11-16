@@ -8,6 +8,7 @@ export class ExperienceEdit extends React.Component {
   render() {
     return (
       <div>
+        <p className="sectionTitle">Experiences</p>
         <button onClick={this.props.clickAddExperience}>Add Experience</button>
         {this.props.experienceArray.map((experience, index) => {
           return (

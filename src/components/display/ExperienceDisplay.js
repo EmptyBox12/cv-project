@@ -8,6 +8,7 @@ export class ExperienceDisplay extends React.Component {
   render() {
     return (
       <div>
+        <p className="sectionTitle">Experiences</p>
         {this.props.experienceArray.map((experience) => {
           return (
             <div key={experience.id}>

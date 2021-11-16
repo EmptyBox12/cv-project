@@ -8,6 +8,7 @@ export class PersonalDisplay extends React.Component {
   render() {
     return (
       <div>
+        <p className="sectionTitle">Personal Information</p>
         <p>{this.props.personalInfo.name}</p>
         <div>
           <p>{this.props.personalInfo.email}</p>
