@@ -1,14 +1,28 @@
 /* eslint-disable no-useless-constructor */
-import React from 'react';
+import React from "react";
 
-
-export class EducationDisplay extends React.Component{
-  constructor(props){
+export class EducationDisplay extends React.Component {
+  constructor(props) {
     super(props);
   }
-  render(){
+  render() {
     return (
-      <div>Education Display</div>
+      <div>
+        {this.props.educationArray.map((education) => {
+          return (
+            <div key={education.id}>
+              <div className="leftSide">
+                <p>{education.schoolName}</p>
+                <p>{education.major}</p>
+              </div>
+              <div className="rightSide">
+                <p>{education.startDate}</p>
+                <p>{education.endDate}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     );
   }
 }

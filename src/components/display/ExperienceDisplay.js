@@ -10,7 +10,7 @@ export class ExperienceDisplay extends React.Component {
       <div>
         {this.props.experienceArray.map((experience) => {
           return (
-            <div key = {experience.id}>
+            <div key={experience.id}>
               <div className="leftSide">
                 <p>{experience.companyName}</p>
                 <p>{experience.position}</p>

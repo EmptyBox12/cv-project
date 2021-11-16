@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
 import uniqid from "uniqid";
+//import css
 import "./styles/App.css";
 //edit mode
 import { PersonalEdit } from "./components/edit/PersonalEdit";
@@ -14,8 +15,6 @@ import { ExperienceDisplay } from "./components/display/ExperienceDisplay";
 class App extends React.Component {
   constructor() {
     super();
-    this.renderDisplay = this.renderDisplay.bind(this);
-    this.renderEdit = this.renderEdit.bind(this);
     this.state = {
       personal: {
         name: "",
@@ -44,6 +43,7 @@ class App extends React.Component {
       editMode: true,
     };
   }
+  //personal section
   handlePersonalChange = (e) => {
     this.setState({
       personal: {
@@ -52,6 +52,7 @@ class App extends React.Component {
       },
     });
   };
+  //experience section
   handleExperienceChange = (e) => {
     let index = e.target.getAttribute("data-id");
     let experience = [...this.state.experience];
@@ -85,12 +86,47 @@ class App extends React.Component {
     });
     this.setState({ experience });
   };
+  //education section
+  handleEducationChange = (e) => {
+    let index = e.target.getAttribute("data-id");
+    let education = [...this.state.education];
+    education[index] = {
+      ...this.state.education[index],
+      [e.target.name]: e.target.value,
+    };
+    this.setState({ education });
+  };
+  clickAddEducation = (e) => {
+    let object = {
+      schoolName: "",
+      major: "",
+      startDate: "",
+      endDate: "",
+      id: uniqid(),
+    };
+    this.setState({
+      education: this.state.education.concat(object),
+    });
+  };
+  clickDeleteEducation = (e) => {
+    let deleteIndex = e.target.getAttribute("data-id");
+    let education = this.state.education.filter((item, index) => {
+      if (index !== parseInt(deleteIndex)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.setState({ education });
+  };
+  //switch from preview to edit or vice versa
   switchMode = () => {
     this.setState({
       editMode: this.state.editMode ? false : true,
     });
   };
-  renderEdit() {
+  //render edit and display modes
+  renderEdit = () => {
     return (
       <div>
         <PersonalEdit
@@ -103,19 +139,24 @@ class App extends React.Component {
           clickAddExperience={this.clickAddExperience}
           clickDeleteExperience={this.clickDeleteExperience}
         />
-        <EducationEdit />
+        <EducationEdit
+          educationArray={this.state.education}
+          handleEducationChange={this.handleEducationChange}
+          clickAddEducation={this.clickAddEducation}
+          clickDeleteEducation={this.clickDeleteEducation}
+        />
       </div>
     );
-  }
-  renderDisplay() {
+  };
+  renderDisplay = () => {
     return (
       <div>
         <PersonalDisplay personalInfo={this.state.personal} />
-        <ExperienceDisplay experienceArray = {this.state.experience}/>
-        <EducationDisplay />
+        <ExperienceDisplay experienceArray={this.state.experience} />
+        <EducationDisplay educationArray = {this.state.education}/>
       </div>
     );
-  }
+  };
   render() {
     return (
       <div className="App">
