@@ -1,5 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+//css
+import personalEditCss from "../../styles/edit/personalEdit.module.css";
 
 export class PersonalEdit extends React.Component {
   constructor(props) {
@@ -7,10 +9,11 @@ export class PersonalEdit extends React.Component {
   }
   render() {
     return (
-      <div>
-        <p className="sectionTitle">Personal Information</p>
+      <div className={personalEditCss.container}>
+        <p className={personalEditCss.title}>Personal Information</p>
         <div className="name">
           <input
+            className={personalEditCss.nameInput}
             type="text"
             placeholder="John Smith"
             name="name"
@@ -18,18 +21,20 @@ export class PersonalEdit extends React.Component {
             onChange={this.props.handlePersonalChange}
           />
         </div>
-        <div className="contact">
+        <div className={personalEditCss.contact}>
           <input
+            className={personalEditCss.mailInput}
             type="email"
             name="email"
-            placeholder = "example@test.com"
+            placeholder="example@test.com"
             value={this.props.personalInfo.email}
             onChange={this.props.handlePersonalChange}
           />
           <input
+            className={personalEditCss.telInput}
             type="tel"
             name="phoneNumber"
-            placeholder = "xxx-xxx-xxx"
+            placeholder="xxx-xxx-xxx"
             value={this.props.personalInfo.phoneNumber}
             onChange={this.props.handlePersonalChange}
           />

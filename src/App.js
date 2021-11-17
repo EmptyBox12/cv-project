@@ -153,16 +153,20 @@ class App extends React.Component {
       <div>
         <PersonalDisplay personalInfo={this.state.personal} />
         <ExperienceDisplay experienceArray={this.state.experience} />
-        <EducationDisplay educationArray = {this.state.education}/>
+        <EducationDisplay educationArray={this.state.education} />
       </div>
     );
   };
   render() {
     return (
       <div className="App">
-        <h1 className="title">CV Creator</h1>
-        {this.state.editMode ? this.renderEdit() : this.renderDisplay()}
-        <button onClick={this.switchMode}>Switch Mode</button>
+        <div className="header">
+          <h1 className="title">CV Creator</h1>
+        </div>
+        <div className = "content">
+          {this.state.editMode ? this.renderEdit() : this.renderDisplay()}
+          <button onClick={this.switchMode}>Switch Mode</button>
+        </div>
       </div>
     );
   }

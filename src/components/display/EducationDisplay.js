@@ -1,5 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+//css
+import educationDisplayCss from "../../styles/display/educationDisplay.module.css";
 
 export class EducationDisplay extends React.Component {
   constructor(props) {
@@ -8,7 +10,7 @@ export class EducationDisplay extends React.Component {
   render() {
     return (
       <div>
-        <p className="sectionTitle">Education</p>
+        <p className={educationDisplayCss.sectionTitle}>Education</p>
         {this.props.educationArray.map((education) => {
           return (
             <div key={education.id}>

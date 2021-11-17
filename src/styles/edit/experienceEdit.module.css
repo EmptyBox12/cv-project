@@ -1,0 +1,24 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 2px dashed #3e3e3e;
+  padding: 10px;
+}
+
+.title{
+  color: #3e3e3e;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+.addExperience{
+  align-self:flex-end;
+}
+.content{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  padding-top: 20px;
+}

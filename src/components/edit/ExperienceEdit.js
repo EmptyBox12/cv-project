@@ -1,5 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+//css
+import experienceEditCss from "../../styles/edit/experienceEdit.module.css";
 
 export class ExperienceEdit extends React.Component {
   constructor(props) {
@@ -7,12 +9,12 @@ export class ExperienceEdit extends React.Component {
   }
   render() {
     return (
-      <div>
-        <p className="sectionTitle">Experiences</p>
-        <button onClick={this.props.clickAddExperience}>Add Experience</button>
+      <div className = {experienceEditCss.container}>
+        <p className={experienceEditCss.title}>Experiences</p>
+        <button className = {experienceEditCss.addExperience} onClick={this.props.clickAddExperience}>Add Experience</button>
         {this.props.experienceArray.map((experience, index) => {
           return (
-            <div key={experience.id}>
+            <div className={experienceEditCss.content} key={experience.id}>
               <div className="leftSide">
                 <input
                   type="text"

@@ -1,5 +1,8 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+//css
+import experienceDisplayCss from "../../styles/display/experienceDisplay.module.css";
+
 
 export class ExperienceDisplay extends React.Component {
   constructor(props) {

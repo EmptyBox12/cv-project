@@ -1,5 +1,8 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+//css
+import personalDisplayCss from "../../styles/display/personalDisplay.module.css";
+
 
 export class PersonalDisplay extends React.Component {
   constructor(props) {
