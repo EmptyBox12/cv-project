@@ -10,19 +10,25 @@ export class ExperienceDisplay extends React.Component {
   }
   render() {
     return (
-      <div>
-        <p className="sectionTitle">Experiences</p>
+      <div className = {experienceDisplayCss.container}>
+        <p className={experienceDisplayCss.title}>Experiences</p>
         {this.props.experienceArray.map((experience) => {
           return (
-            <div key={experience.id}>
-              <div className="leftSide">
-                <p>{experience.companyName}</p>
-                <p>{experience.position}</p>
-                <p>{experience.description}</p>
+            <div className = {experienceDisplayCss.content} key={experience.id}>
+              <div className= {experienceDisplayCss.leftSide}>
+                <p className={experienceDisplayCss.companyName} >{experience.companyName}</p>
+                <p className= {experienceDisplayCss.companyPosition}>{experience.position}</p>
+                <textarea
+                  className={experienceDisplayCss.companyDescription}
+                  name="description"
+                  value={experience.description}
+                  readOnly = "true"
+                  cols="50"
+                  rows="3"
+                ></textarea>
               </div>
-              <div className="rightSide">
-                <p>{experience.startDate}</p>
-                -
+              <div className={experienceDisplayCss.dates}>
+                <p>{experience.startDate}-</p>
                 <p>{experience.endDate}</p>
               </div>
             </div>
