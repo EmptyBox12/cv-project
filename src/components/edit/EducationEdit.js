@@ -1,5 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+//css
+import educationEditCss from "../../styles/edit/educationEdit.module.css";
 
 export class EducationEdit extends React.Component {
   constructor(props) {
@@ -7,14 +9,20 @@ export class EducationEdit extends React.Component {
   }
   render() {
     return (
-      <div>
-        <p className="sectionTitle">Education</p>
-        <button onClick={this.props.clickAddEducation}>Add Education</button>
+      <div className={educationEditCss.container}>
+        <p className={educationEditCss.title}>Education</p>
+        <button
+          className={educationEditCss.addEducation}
+          onClick={this.props.clickAddEducation}
+        >
+          Add Education
+        </button>
         {this.props.educationArray.map((education, index) => {
           return (
-            <div key={education.id}>
-              <div className="leftSide">
+            <div className={educationEditCss.content} key={education.id}>
+              <div className={educationEditCss.leftSide}>
                 <input
+                  className={educationEditCss.schoolName}
                   type="text"
                   name="schoolName"
                   placeholder="Marmara University"
@@ -23,6 +31,7 @@ export class EducationEdit extends React.Component {
                   data-id={index}
                 />
                 <input
+                  className={educationEditCss.major}
                   type="text"
                   name="major"
                   placeholder="Business Administration"
@@ -31,14 +40,15 @@ export class EducationEdit extends React.Component {
                   data-id={index}
                 />
               </div>
-              <div className="rightSide">
+              <div className={educationEditCss.rightSide}>
                 <button
+                  className = {educationEditCss.deleteButton}
                   data-id={index}
                   onClick={this.props.clickDeleteEducation}
                 >
                   Delete
                 </button>
-                <div className="dates">
+                <div className={educationEditCss.dates}>
                   <input
                     type="month"
                     name="startDate"
@@ -46,6 +56,7 @@ export class EducationEdit extends React.Component {
                     onChange={this.props.handleEducationChange}
                     data-id={index}
                   />
+                  -
                   <input
                     type="month"
                     name="endDate"

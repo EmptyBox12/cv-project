@@ -1,0 +1,53 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 2px dashed #3e3e3e;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.title{
+  color: #3e3e3e;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.content{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+.leftSide{
+  display: flex;
+  margin-left: 50px;
+  flex-direction: column;
+  gap: 10px;
+}
+.companyName, .companyPosition{
+  font-size: 17px;
+  text-align: center;
+  border-radius: 5px;
+  height: 25px;
+  width: 300px;
+}
+.companyPosition{
+  font-size: 15px;
+}
+.companyDescription{
+  font-size: 15px;
+  border-radius: 5px;
+}
+.rightSide{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.dates{
+  display: flex;
+  gap: 5px;
+}

@@ -22,6 +22,7 @@ export class ExperienceDisplay extends React.Component {
               </div>
               <div className="rightSide">
                 <p>{experience.startDate}</p>
+                -
                 <p>{experience.endDate}</p>
               </div>
             </div>

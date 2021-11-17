@@ -9,17 +9,19 @@ export class EducationDisplay extends React.Component {
   }
   render() {
     return (
-      <div>
-        <p className={educationDisplayCss.sectionTitle}>Education</p>
+      <div className={educationDisplayCss.container}>
+        <p className={educationDisplayCss.title}>Education</p>
         {this.props.educationArray.map((education) => {
           return (
-            <div key={education.id}>
-              <div className="leftSide">
-                <p>{education.schoolName}</p>
-                <p>{education.major}</p>
+            <div className={educationDisplayCss.content} key={education.id}>
+              <div className={educationDisplayCss.leftSide}>
+                <p className={educationDisplayCss.schoolName}>
+                  {education.schoolName}
+                </p>
+                <p className={educationDisplayCss.major}>{education.major}</p>
               </div>
-              <div className="rightSide">
-                <p>{education.startDate}</p>
+              <div className={educationDisplayCss.rightSide}>
+                <p>{education.startDate} - </p>
                 <p>{education.endDate}</p>
               </div>
             </div>

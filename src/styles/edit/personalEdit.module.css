@@ -4,6 +4,7 @@
   gap: 10px;
   border-bottom: 2px dashed #3e3e3e;
   padding: 10px;
+  margin-top: 10px;
 }
 .title{
   color: #3e3e3e;
@@ -21,7 +22,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 .telInput, .mailInput{
   font-size: 15px;

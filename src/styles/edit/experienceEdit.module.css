@@ -4,6 +4,7 @@
   gap: 5px;
   border-bottom: 2px dashed #3e3e3e;
   padding: 10px;
+  margin-top: 10px;
 }
 
 .title{
@@ -15,10 +16,75 @@
 }
 .addExperience{
   align-self:flex-end;
+  background-color: skyblue;
+  font-size: 15px;
+  width: 150px;
+  height: 30px;
+  font-weight: bold;
+  border: black 1px solid;
+  border-radius: 7px;
+  color: black;
+}
+.addExperience:hover{
+  filter: brightness(0.9);
+  border: black 2px solid;
+}
+.addExperience:active{
+  filter: brightness(0.8);
+  border: black 2px solid;
 }
 .content{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 10px;
   padding-top: 20px;
+  margin-bottom: 50px;
+}
+.leftSide{
+  display: flex;
+  margin-left: 50px;
+  flex-direction: column;
+  gap: 10px;
+}
+.companyName, .companyPosition{
+  font-size: 17px;
+  text-align: center;
+  border-radius: 5px;
+  height: 25px;
+  width: 300px;
+}
+.companyPosition{
+  font-size: 15px;
+}
+.companyDescription{
+  font-size: 15px;
+  border-radius: 5px;
+}
+.rightSide{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.deleteButton{
+  align-self: flex-end;
+  background-color: tomato;
+  font-size: 15px;
+  width: 60px;
+  height: 23px;
+  font-weight: bold;
+  border: black 1px solid;
+  border-radius: 7px;
+  color: black;
+}
+.deleteButton:hover{
+  filter: brightness(0.9);
+  border: black 2px solid;
+}
+.deleteButton:active{
+  filter: brightness(0.8);
+  border: black 2px solid;
+}
+.dates{
+  display: flex;
+  gap: 5px;
 }

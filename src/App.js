@@ -163,9 +163,14 @@ class App extends React.Component {
         <div className="header">
           <h1 className="title">CV Creator</h1>
         </div>
-        <div className = "content">
+        <div className="content">
           {this.state.editMode ? this.renderEdit() : this.renderDisplay()}
-          <button onClick={this.switchMode}>Switch Mode</button>
+          <button
+            onClick={this.switchMode}
+            className={this.state.editMode ? "edit" : "display"}
+          >
+            {this.state.editMode ? "Switch to Display Mode" : "Switch to Edit Mode"}
+          </button>
         </div>
       </div>
     );

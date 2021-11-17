@@ -24,6 +24,26 @@
   min-height: 100vh;
   background-color: #F9FBFF ;
 }
+.edit, .display{
+  margin: 20px;
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.edit:hover, .display:hover{
+  filter: brightness(0.9);
+}
+.edit:active, .display:active{
+  filter: brightness(0.8);
+}
+.edit{
+  background-color: skyblue;
+}
+.display{
+  background-color: springgreen;
+}
 
 
 
