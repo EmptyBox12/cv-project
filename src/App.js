@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-constructor */
-import React from "react";
+import React, { useState } from "react";
 import uniqid from "uniqid";
 //import css
 import "./styles/App.css";
@@ -12,57 +12,51 @@ import { PersonalDisplay } from "./components/display/PersonalDisplay";
 import { EducationDisplay } from "./components/display/EducationDisplay";
 import { ExperienceDisplay } from "./components/display/ExperienceDisplay";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      personal: {
-        name: "",
-        email: "",
-        phoneNumber: "",
-      },
-      education: [
-        {
-          schoolName: "",
-          major: "",
-          startDate: "",
-          endDate: "",
-          id: uniqid(),
-        },
-      ],
-      experience: [
-        {
-          companyName: "",
-          position: "",
-          description: "",
-          startDate: "",
-          endDate: "",
-          id: uniqid(),
-        },
-      ],
-      editMode: true,
-    };
-  }
+function App() {
+  //states
+  const [personal, setPersonal] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+  });
+  const [education, setEducation] = useState([
+    {
+      schoolName: "",
+      major: "",
+      startDate: "",
+      endDate: "",
+      id: uniqid(),
+    },
+  ]);
+  const [experience, setExperience] = useState([
+    {
+      companyName: "",
+      position: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+      id: uniqid(),
+    },
+  ]);
+  const [editMode, setEditMode] = useState(true);
   //personal section
-  handlePersonalChange = (e) => {
-    this.setState({
-      personal: {
-        ...this.state.personal,
-        [e.target.name]: e.target.value,
-      },
+  const handlePersonalChange = (e) => {
+    setPersonal({
+      ...personal,
+      [e.target.name]: e.target.value,
     });
   };
   //experience section
-  handleExperienceChange = (e) => {
+  const handleExperienceChange = (e) => {
     let index = e.target.getAttribute("data-id");
-    let experience = [...this.state.experience];
-    experience[index] = {
-      ...this.state.experience[index],
+    let experienceArray = [...experience];
+    experienceArray[index] = {
+      ...experience[index],
       [e.target.name]: e.target.value,
     };
-    this.setState({ experience });
+    setExperience(experienceArray);
   };
-  clickAddExperience = (e) => {
+  const clickAddExperience = (e) => {
     let object = {
       companyName: "",
       position: "",
@@ -71,32 +65,30 @@ class App extends React.Component {
       endDate: "",
       id: uniqid(),
     };
-    this.setState({
-      experience: this.state.experience.concat(object),
-    });
+    setExperience(experience.concat(object));
   };
-  clickDeleteExperience = (e) => {
+  const clickDeleteExperience = (e) => {
     let deleteIndex = e.target.getAttribute("data-id");
-    let experience = this.state.experience.filter((item, index) => {
+    let experienceArray = experience.filter((item, index) => {
       if (index !== parseInt(deleteIndex)) {
         return true;
       } else {
         return false;
       }
     });
-    this.setState({ experience });
+    setExperience(experienceArray);
   };
   //education section
-  handleEducationChange = (e) => {
+  const handleEducationChange = (e) => {
     let index = e.target.getAttribute("data-id");
-    let education = [...this.state.education];
-    education[index] = {
-      ...this.state.education[index],
+    let educationArray = [...education];
+    educationArray[index] = {
+      ...education[index],
       [e.target.name]: e.target.value,
     };
-    this.setState({ education });
+    setEducation(educationArray);
   };
-  clickAddEducation = (e) => {
+  const clickAddEducation = (e) => {
     let object = {
       schoolName: "",
       major: "",
@@ -104,77 +96,68 @@ class App extends React.Component {
       endDate: "",
       id: uniqid(),
     };
-    this.setState({
-      education: this.state.education.concat(object),
-    });
+    setEducation(education.concat(object));
   };
-  clickDeleteEducation = (e) => {
+  const clickDeleteEducation = (e) => {
     let deleteIndex = e.target.getAttribute("data-id");
-    let education = this.state.education.filter((item, index) => {
+    let educationArray = education.filter((item, index) => {
       if (index !== parseInt(deleteIndex)) {
         return true;
       } else {
         return false;
       }
     });
-    this.setState({ education });
+    setEducation(educationArray);
   };
   //switch from preview to edit or vice versa
-  switchMode = () => {
-    this.setState({
-      editMode: this.state.editMode ? false : true,
-    });
+  const switchMode = () => {
+    setEditMode(editMode ? false : true);
   };
   //render edit and display modes
-  renderEdit = () => {
+  const renderEdit = () => {
     return (
       <div>
         <PersonalEdit
-          personalInfo={this.state.personal}
-          handlePersonalChange={this.handlePersonalChange}
+          personalInfo={personal}
+          handlePersonalChange={handlePersonalChange}
         />
         <ExperienceEdit
-          experienceArray={this.state.experience}
-          handleExperienceChange={this.handleExperienceChange}
-          clickAddExperience={this.clickAddExperience}
-          clickDeleteExperience={this.clickDeleteExperience}
+          experienceArray={experience}
+          handleExperienceChange={handleExperienceChange}
+          clickAddExperience={clickAddExperience}
+          clickDeleteExperience={clickDeleteExperience}
         />
         <EducationEdit
-          educationArray={this.state.education}
-          handleEducationChange={this.handleEducationChange}
-          clickAddEducation={this.clickAddEducation}
-          clickDeleteEducation={this.clickDeleteEducation}
+          educationArray={education}
+          handleEducationChange={handleEducationChange}
+          clickAddEducation={clickAddEducation}
+          clickDeleteEducation={clickDeleteEducation}
         />
       </div>
     );
   };
-  renderDisplay = () => {
+  const renderDisplay = () => {
     return (
       <div>
-        <PersonalDisplay personalInfo={this.state.personal} />
-        <ExperienceDisplay experienceArray={this.state.experience} />
-        <EducationDisplay educationArray={this.state.education} />
+        <PersonalDisplay personalInfo={personal} />
+        <ExperienceDisplay experienceArray={experience} />
+        <EducationDisplay educationArray={education} />
       </div>
     );
   };
-  render() {
-    return (
-      <div className="App">
-        <div className="header">
-          <h1 className="title">CV Creator</h1>
-        </div>
-        <div className="content">
-          {this.state.editMode ? this.renderEdit() : this.renderDisplay()}
-          <button
-            onClick={this.switchMode}
-            className={this.state.editMode ? "edit" : "display"}
-          >
-            {this.state.editMode ? "Switch to Display Mode" : "Switch to Edit Mode"}
-          </button>
-        </div>
+  return (
+    <div className="App">
+      <div className="header">
+        <h1 className="title">CV Creator</h1>
       </div>
-    );
-  }
+      <div className="content">
+        {editMode ? renderEdit() : renderDisplay()}
+        <button onClick={switchMode} className={editMode ? "edit" : "display"}>
+          {editMode ? "Switch to Display Mode" : "Switch to Edit Mode"}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
